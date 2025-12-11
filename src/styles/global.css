@@ -1,3 +1,9 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+    --color-fintech-dark: #0F172A;
+    --color-fintech-darker: #020617;
+    --color-cta-blue: #3B82F6;
+    --color-cta-teal: #14B8A6;
+  }
+  

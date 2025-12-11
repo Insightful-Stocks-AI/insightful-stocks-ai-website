@@ -1,193 +1,159 @@
 import * as React from "react"
 import type { HeadFC, PageProps } from "gatsby"
+import { useState } from "react"
 
-const pageStyles = {
-  color: "#232129",
-  padding: 96,
-  fontFamily: "-apple-system, Roboto, sans-serif, serif",
-}
-const headingStyles = {
-  marginTop: 0,
-  marginBottom: 64,
-  maxWidth: 320,
-}
-const headingAccentStyles = {
-  color: "#663399",
-}
-const paragraphStyles = {
-  marginBottom: 48,
-}
-const codeStyles = {
-  color: "#8A6534",
-  padding: 4,
-  backgroundColor: "#FFF4DB",
-  fontSize: "1.25rem",
-  borderRadius: 4,
-}
-const listStyles = {
-  marginBottom: 96,
-  paddingLeft: 0,
-}
-const doclistStyles = {
-  paddingLeft: 0,
-}
-const listItemStyles = {
-  fontWeight: 300,
-  fontSize: 24,
-  maxWidth: 560,
-  marginBottom: 30,
-}
+export default function IndexPage({}: PageProps) {
+  const [email, setEmail] = useState("")
+  const [submitted, setSubmitted] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
-const linkStyle = {
-  color: "#8954A8",
-  fontWeight: "bold",
-  fontSize: 16,
-  verticalAlign: "5%",
-}
-
-const docLinkStyle = {
-  ...linkStyle,
-  listStyleType: "none",
-  display: `inline-block`,
-  marginBottom: 24,
-  marginRight: 12,
-}
-
-const descriptionStyle = {
-  color: "#232129",
-  fontSize: 14,
-  marginTop: 10,
-  marginBottom: 0,
-  lineHeight: 1.25,
-}
-
-const docLinks = [
-  {
-    text: "TypeScript Documentation",
-    url: "https://www.gatsbyjs.com/docs/how-to/custom-configuration/typescript/",
-    color: "#8954A8",
-  },
-  {
-    text: "GraphQL Typegen Documentation",
-    url: "https://www.gatsbyjs.com/docs/how-to/local-development/graphql-typegen/",
-    color: "#8954A8",
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    setIsSubmitting(true)
+    
+    // Simulate API call - replace with actual waitlist service integration
+    // For now, we'll just show success after a brief delay
+    setTimeout(() => {
+      setSubmitted(true)
+      setIsSubmitting(false)
+      setEmail("")
+    }, 500)
   }
-]
 
-const badgeStyle = {
-  color: "#fff",
-  backgroundColor: "#088413",
-  border: "1px solid #088413",
-  fontSize: 11,
-  fontWeight: "bold",
-  letterSpacing: 1,
-  borderRadius: 4,
-  padding: "4px 6px",
-  display: "inline-block",
-  position: "relative" as "relative",
-  top: -2,
-  marginLeft: 10,
-  lineHeight: 1,
-}
-
-const links = [
-  {
-    text: "Tutorial",
-    url: "https://www.gatsbyjs.com/docs/tutorial/getting-started/",
-    description:
-      "A great place to get started if you're new to web development. Designed to guide you through setting up your first Gatsby site.",
-    color: "#E95800",
-  },
-  {
-    text: "How to Guides",
-    url: "https://www.gatsbyjs.com/docs/how-to/",
-    description:
-      "Practical step-by-step guides to help you achieve a specific goal. Most useful when you're trying to get something done.",
-    color: "#1099A8",
-  },
-  {
-    text: "Reference Guides",
-    url: "https://www.gatsbyjs.com/docs/reference/",
-    description:
-      "Nitty-gritty technical descriptions of how Gatsby works. Most useful when you need detailed information about Gatsby's APIs.",
-    color: "#BC027F",
-  },
-  {
-    text: "Conceptual Guides",
-    url: "https://www.gatsbyjs.com/docs/conceptual/",
-    description:
-      "Big-picture explanations of higher-level Gatsby concepts. Most useful for building understanding of a particular topic.",
-    color: "#0D96F2",
-  },
-  {
-    text: "Plugin Library",
-    url: "https://www.gatsbyjs.com/plugins",
-    description:
-      "Add functionality and customize your Gatsby site or app with thousands of plugins built by our amazing developer community.",
-    color: "#8EB814",
-  },
-  {
-    text: "Build and Host",
-    url: "https://www.gatsbyjs.com/cloud",
-    badge: true,
-    description:
-      "Now you’re ready to show the world! Give your Gatsby site superpowers: Build and host on Gatsby Cloud. Get started for free!",
-    color: "#663399",
-  },
-]
-
-const IndexPage: React.FC<PageProps> = () => {
   return (
-    <main style={pageStyles}>
-      <h1 style={headingStyles}>
-        Congratulations
-        <br />
-        <span style={headingAccentStyles}>— you just made a Gatsby site! 🎉🎉🎉</span>
-      </h1>
-      <p style={paragraphStyles}>
-        Edit <code style={codeStyles}>src/pages/index.tsx</code> to see this page
-        update in real-time. 😎
-      </p>
-      <ul style={doclistStyles}>
-        {docLinks.map(doc => (
-          <li key={doc.url} style={docLinkStyle}>
-            <a
-              style={linkStyle}
-              href={`${doc.url}?utm_source=starter&utm_medium=ts-docs&utm_campaign=minimal-starter-ts`}
-            >
-              {doc.text}
-            </a>
-          </li>
-        ))}
-      </ul>
-      <ul style={listStyles}>
-        {links.map(link => (
-          <li key={link.url} style={{ ...listItemStyles, color: link.color }}>
-            <span>
-              <a
-                style={linkStyle}
-                href={`${link.url}?utm_source=starter&utm_medium=start-page&utm_campaign=minimal-starter-ts`}
-              >
-                {link.text}
-              </a>
-              {link.badge && (
-                <span style={badgeStyle} aria-label="New Badge">
-                  NEW!
-                </span>
-              )}
-              <p style={descriptionStyle}>{link.description}</p>
-            </span>
-          </li>
-        ))}
-      </ul>
-      <img
-        alt="Gatsby G Logo"
-        src="data:image/svg+xml,%3Csvg width='24' height='24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 2a10 10 0 110 20 10 10 0 010-20zm0 2c-3.73 0-6.86 2.55-7.75 6L14 19.75c3.45-.89 6-4.02 6-7.75h-5.25v1.5h3.45a6.37 6.37 0 01-3.89 4.44L6.06 9.69C7 7.31 9.3 5.63 12 5.63c2.13 0 4 1.04 5.18 2.65l1.23-1.06A7.959 7.959 0 0012 4zm-8 8a8 8 0 008 8c.04 0 .09 0-8-8z' fill='%23639'/%3E%3C/svg%3E"
-      />
-    </main>
+    <div className="min-h-screen bg-fintech-dark text-white">
+      {/* Hero Section */}
+      <section className="px-4 py-20 md:py-32 lg:py-40">
+        <div className="max-w-4xl mx-auto text-center">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+            The AI Agent That Reads SEC Filings So You Don't Have To.
+          </h1>
+          <p className="text-xl md:text-2xl text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed">
+            Insightful Stocks AI delivers autonomous, verifiable insights into the material changes affecting your portfolio—not just news, but actionable knowledge.
+          </p>
+          
+          {/* Waitlist Form */}
+          {!submitted ? (
+            <form onSubmit={handleSubmit} className="max-w-md mx-auto">
+              <div className="flex flex-col sm:flex-row gap-4">
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Enter your email address"
+                  required
+                  className="flex-1 px-6 py-4 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cta-blue focus:border-transparent transition-all"
+                />
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="px-8 py-4 bg-cta-blue hover:bg-blue-600 text-white font-semibold rounded-lg transition-all duration-200 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none whitespace-nowrap"
+                >
+                  {isSubmitting ? "Joining..." : "Join the Waitlist & Get Early Access"}
+                </button>
+              </div>
+            </form>
+          ) : (
+            <div className="max-w-md mx-auto">
+              <div className="px-6 py-4 bg-green-500/20 border border-green-500/50 rounded-lg text-green-300 text-lg font-medium">
+                You're on the list! We'll notify you when our beta opens.
+              </div>
+            </div>
+          )}
+        </div>
+      </section>
+
+      {/* Limited Access / Scarcity Section */}
+      <section className="px-4 py-16 md:py-24 bg-gradient-to-b from-fintech-dark to-fintech-darker border-y border-cta-teal/30">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-6 text-white">
+            Limited Access: Join the Exclusive Pilot Program
+          </h2>
+          <p className="text-lg md:text-xl text-gray-300 mb-10 max-w-2xl mx-auto leading-relaxed">
+            Our Agentic AI platform is resource-intensive. To ensure peak performance and gather targeted feedback, we are only accepting a limited number of early users.
+          </p>
+          <div className="inline-block px-8 md:px-10 py-6 md:py-7 bg-gradient-to-r from-cta-teal/20 to-cta-blue/20 border-2 border-cta-teal/60 rounded-xl backdrop-blur-sm shadow-lg shadow-cta-teal/20">
+            <p className="text-xl md:text-2xl lg:text-3xl font-bold text-white">
+              Only the first <span className="text-cta-teal text-2xl md:text-3xl lg:text-4xl font-extrabold">500 users</span> will be accepted into the Pilot program.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Core Value Section */}
+      <section className="px-4 py-20 md:py-32 bg-fintech-darker">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-16">
+            Superior Insights. Unquestionable Trust.
+          </h2>
+          
+          <div className="grid md:grid-cols-3 gap-8">
+            {/* Feature Block 1 */}
+            <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-8 hover:border-cta-blue/50 transition-all duration-300 transform hover:-translate-y-1">
+              <div className="mb-4">
+                <div className="w-12 h-12 bg-cta-blue/20 rounded-lg flex items-center justify-center mb-4">
+                  <svg className="w-6 h-6 text-cta-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                  </svg>
+                </div>
+                <h3 className="text-2xl font-bold mb-3">Agentic Monitoring (24/7)</h3>
+              </div>
+              <p className="text-gray-300 leading-relaxed">
+                Our AI agents constantly process 10-Ks, 10-Qs, and 8-Ks for your watch list, eliminating manual searching.
+              </p>
+            </div>
+
+            {/* Feature Block 2 */}
+            <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-8 hover:border-cta-teal/50 transition-all duration-300 transform hover:-translate-y-1">
+              <div className="mb-4">
+                <div className="w-12 h-12 bg-cta-teal/20 rounded-lg flex items-center justify-center mb-4">
+                  <svg className="w-6 h-6 text-cta-teal" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                  </svg>
+                </div>
+                <h3 className="text-2xl font-bold mb-3">Delta Reporting</h3>
+              </div>
+              <p className="text-gray-300 leading-relaxed">
+                We compare current filings to past versions, summarizing only the material changes, not the entire document.
+              </p>
+            </div>
+
+            {/* Feature Block 3 */}
+            <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-8 hover:border-cta-blue/50 transition-all duration-300 transform hover:-translate-y-1">
+              <div className="mb-4">
+                <div className="w-12 h-12 bg-cta-blue/20 rounded-lg flex items-center justify-center mb-4">
+                  <svg className="w-6 h-6 text-cta-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <h3 className="text-2xl font-bold mb-3">Verifiable Trust</h3>
+              </div>
+              <p className="text-gray-300 leading-relaxed">
+                Every insight includes a direct, highlighted link to the original SEC filing, ensuring zero hallucination risk.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="px-4 py-12 border-t border-white/10">
+        <div className="max-w-6xl mx-auto text-center">
+          <p className="text-gray-400 mb-2">
+            <span className="font-semibold text-white">Insightful Stocks AI</span>
+          </p>
+          <p className="text-gray-500 text-sm">
+            © {new Date().getFullYear()} Insightful Stocks AI. All rights reserved.
+          </p>
+        </div>
+      </footer>
+    </div>
   )
 }
 
-export default IndexPage
-
-export const Head: HeadFC = () => <title>Home Page</title>
+export const Head: HeadFC = () => (
+  <>
+    <title>Insightful Stocks AI - Join the Waitlist</title>
+    <meta name="description" content="The AI Agent That Reads SEC Filings So You Don't Have To. Get autonomous, verifiable insights into material changes affecting your portfolio." />
+  </>
+)
