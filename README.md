@@ -1,49 +1,78 @@
-<p align="center">
-  <a href="https://www.gatsbyjs.com/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts">
-    <img alt="Gatsby" src="https://www.gatsbyjs.com/Gatsby-Monogram.svg" width="60" />
-  </a>
-</p>
-<h1 align="center">
-  Gatsby Minimal TypeScript Starter
-</h1>
+# Insightful Stocks AI - Waitlist Landing Page
 
-## 🚀 Quick start
+A single-page marketing website for Insightful Stocks AI built with Gatsby, TypeScript, and Tailwind CSS.
 
-1.  **Create a Gatsby site.**
+## 🚀 Quick Start
 
-    Use the Gatsby CLI to create a new site, specifying the minimal TypeScript starter.
+### Installation
 
-    ```shell
-    # create a new Gatsby site using the minimal TypeScript starter
-    npm init gatsby -- -ts
-    ```
+```bash
+npm install
+```
 
-2.  **Start developing.**
+### Development
 
-    Navigate into your new site’s directory and start it up.
+```bash
+npm run develop
+```
 
-    ```shell
-    cd my-gatsby-site/
-    npm run develop
-    ```
+Site runs at `http://localhost:8000`
 
-3.  **Open the code and start customizing!**
+### Build
 
-    Your site is now running at http://localhost:8000!
+```bash
+npm run build
+```
 
-    Edit `src/pages/index.tsx` to see your site update in real-time!
+### Clean Cache
 
-4.  **Learn more**
+```bash
+npm run clean
+```
 
-    - [Documentation](https://www.gatsbyjs.com/docs/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
-    - [Tutorials](https://www.gatsbyjs.com/docs/tutorial/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
-    - [Guides](https://www.gatsbyjs.com/docs/how-to/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
-    - [API Reference](https://www.gatsbyjs.com/docs/api-reference/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
-    - [Plugin Library](https://www.gatsbyjs.com/plugins?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
-    - [Cheat Sheet](https://www.gatsbyjs.com/docs/cheat-sheet/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
+## 🛠️ Tech Stack
 
-## 🚀 Quick start (Netlify)
+- Gatsby v5
+- TypeScript
+- Tailwind CSS v4
+- React v18
 
-Deploy this starter with one click on [Netlify](https://app.netlify.com/signup):
+## 📁 Key Files
 
-[<img src="https://www.netlify.com/img/deploy/button.svg" alt="Deploy to Netlify" />](https://app.netlify.com/start/deploy?repository=https://github.com/gatsbyjs/gatsby-starter-minimal-ts)
+- `src/pages/index.tsx` - Main landing page
+- `tailwind.config.js` - Custom colors and Tailwind config
+- `src/styles/global.css` - Global styles with Tailwind imports
+- `postcss.config.js` - PostCSS configuration
+
+## 🎨 Customization
+
+### Colors
+
+Edit `tailwind.config.js` to modify colors:
+- `fintech-dark`: `#0F172A`
+- `fintech-darker`: `#020617`
+- `cta-blue`: `#3B82F6`
+- `cta-teal`: `#14B8A6`
+
+### Waitlist Form
+
+Update the `handleSubmit` function in `src/pages/index.tsx` to integrate with your waitlist service (Mailchimp, Google Forms, or custom API).
+
+## 🚀 Deployment
+
+### Netlify / Vercel
+
+1. Push code to GitHub
+2. Connect repository to Netlify/Vercel
+3. Build command: `npm run build`
+4. Publish directory: `public`
+
+Deploy automatically on push to main branch.
+
+## 📝 Available Scripts
+
+- `npm run develop` - Start dev server
+- `npm run build` - Production build
+- `npm run serve` - Serve production build
+- `npm run clean` - Clean cache
+- `npm run typecheck` - TypeScript type checking
