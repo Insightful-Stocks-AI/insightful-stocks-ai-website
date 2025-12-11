@@ -16,6 +16,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@tailwindcss/postcss": "^4.1.17",
     "autoprefixer": "^10.4.22",
     "gatsby": "^5.14.6",
     "gatsby-plugin-postcss": "^6.15.0",
