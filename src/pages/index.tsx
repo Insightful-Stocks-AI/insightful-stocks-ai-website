@@ -47,49 +47,66 @@ export default function IndexPage({}: PageProps) {
     <div className="min-h-screen bg-fintech-dark text-white">
       {/* Hero Section */}
       <section className="px-4 sm:px-6 lg:px-8 py-16 sm:py-20 md:py-32 lg:py-40">
-        <div className="max-w-4xl mx-auto text-center">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 leading-tight px-2">
-            The AI Agent That Reads SEC Filings So You Don't Have To.
-          </h1>
-          <p className="text-lg sm:text-xl md:text-2xl text-gray-300 mb-8 sm:mb-12 max-w-3xl mx-auto leading-relaxed px-2">
-            Insightful Stocks AI delivers autonomous, verifiable insights into the material changes affecting your portfolio—not just news, but actionable knowledge.
-          </p>
-          
-          {/* Waitlist Form - Google Form Integration */}
-          {!submitted ? (
-            <form 
-              onSubmit={handleSubmit} 
-              action={GOOGLE_FORM_ACTION}
-              method="POST"
-              className="max-w-md mx-auto mt-8 sm:mt-12 px-2"
-            >
-              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
-                <input
-                  type="email"
-                  name={EMAIL_FIELD_NAME}
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="Enter your email address"
-                  required
-                  className="flex-1 px-4 sm:px-6 py-3 sm:py-4 text-sm sm:text-base rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cta-blue focus:border-transparent transition-all"
-                />
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-cta-blue hover:bg-blue-600 text-white font-semibold text-sm sm:text-base rounded-lg transition-all duration-200 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
-                >
-                  <span className="hidden sm:inline">{isSubmitting ? "Joining..." : "Join the Waitlist & Get Early Access"}</span>
-                  <span className="sm:hidden">{isSubmitting ? "Joining..." : "Join Waitlist"}</span>
-                </button>
-              </div>
-            </form>
-          ) : (
-            <div className="max-w-md mx-auto mt-8 sm:mt-12 px-2">
-              <div className="px-4 sm:px-6 py-3 sm:py-4 bg-green-500/20 border border-green-500/50 rounded-lg text-green-300 text-base sm:text-lg font-medium">
-                You're on the list! We'll notify you when our beta opens.
+        <div className="max-w-6xl mx-auto">
+          {/* Hero Content - Responsive Layout */}
+          <div className="flex flex-col lg:flex-row lg:items-center lg:gap-12">
+            {/* Text Content */}
+            <div className="flex-1 text-center mb-8 lg:mb-0">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 leading-tight px-2 lg:px-0">
+                The AI Agent That Reads SEC Filings So You Don't Have To.
+              </h1>
+              <p className="text-lg sm:text-xl md:text-2xl text-gray-300 mb-8 sm:mb-12 max-w-3xl mx-auto leading-relaxed px-2 lg:px-0">
+                Insightful Stocks AI delivers autonomous, verifiable insights into the material changes affecting your portfolio—not just news, but actionable knowledge.
+              </p>
+              
+              {/* Waitlist Form - Google Form Integration */}
+              <div className="mt-8 sm:mt-12">
+                {!submitted ? (
+                  <form 
+                    onSubmit={handleSubmit} 
+                    action={GOOGLE_FORM_ACTION}
+                    method="POST"
+                    className="max-w-md mx-auto px-2"
+                  >
+                    <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+                      <input
+                        type="email"
+                        name={EMAIL_FIELD_NAME}
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        placeholder="Enter your email address"
+                        required
+                        className="flex-1 px-4 sm:px-6 py-3 sm:py-4 text-sm sm:text-base rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cta-blue focus:border-transparent transition-all"
+                      />
+                      <button
+                        type="submit"
+                        disabled={isSubmitting}
+                        className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-cta-blue hover:bg-blue-600 text-white font-semibold text-sm sm:text-base rounded-lg transition-all duration-200 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+                      >
+                        <span className="hidden sm:inline">{isSubmitting ? "Joining..." : "Join the Waitlist & Get Early Access"}</span>
+                        <span className="sm:hidden">{isSubmitting ? "Joining..." : "Join Waitlist"}</span>
+                      </button>
+                    </div>
+                  </form>
+                ) : (
+                  <div className="max-w-md mx-auto px-2">
+                    <div className="px-4 sm:px-6 py-3 sm:py-4 bg-green-500/20 border border-green-500/50 rounded-lg text-green-300 text-base sm:text-lg font-medium">
+                      You're on the list! We'll notify you when our beta opens.
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
-          )}
+            
+            {/* Hero Image */}
+            <div className="flex-1 flex justify-center lg:justify-end">
+              <img 
+                src="/hero-image.png" 
+                alt="Insightful Stocks AI" 
+                className="max-w-full h-auto max-h-64 sm:max-h-80 md:max-h-96 lg:max-h-[500px] rounded-lg shadow-2xl"
+              />
+            </div>
+          </div>
         </div>
       </section>
 
@@ -186,5 +203,6 @@ export const Head: HeadFC = () => (
     <title>Insightful Stocks AI - Join the Waitlist</title>
     <meta name="description" content="The AI Agent That Reads SEC Filings So You Don't Have To. Get autonomous, verifiable insights into material changes affecting your portfolio." />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="/icon.png" />
   </>
 )
