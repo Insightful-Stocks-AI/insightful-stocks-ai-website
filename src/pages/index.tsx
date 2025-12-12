@@ -1,6 +1,8 @@
 import * as React from "react"
 import type { HeadFC, PageProps } from "gatsby"
 import { useState } from "react"
+import { Helmet } from "react-helmet"
+import heroImage from "../images/landing_page_hero_image.png"
 
 export default function IndexPage({}: PageProps) {
   const [email, setEmail] = useState("")
@@ -45,8 +47,9 @@ export default function IndexPage({}: PageProps) {
 
   return (
     <div className="min-h-screen bg-fintech-dark text-white">
-      {/* Hero Section */}
-      <section className="px-4 sm:px-6 lg:px-8 py-16 sm:py-20 md:py-32 lg:py-40">
+      <main>
+        {/* Hero Section */}
+        <section className="px-4 sm:px-6 lg:px-8 py-16 sm:py-20 md:py-32 lg:py-40">
         <div className="max-w-6xl mx-auto">
           {/* Hero Content - Responsive Layout */}
           <div className="flex flex-col lg:flex-row lg:items-center lg:gap-12">
@@ -76,6 +79,7 @@ export default function IndexPage({}: PageProps) {
                         onChange={(e) => setEmail(e.target.value)}
                         placeholder="Enter your email address"
                         required
+                        aria-label="Email address for waitlist"
                         className="flex-1 px-4 sm:px-6 py-3 sm:py-4 text-sm sm:text-base rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cta-blue focus:border-transparent transition-all"
                       />
                       <button
@@ -101,8 +105,8 @@ export default function IndexPage({}: PageProps) {
             {/* Hero Image */}
             <div className="flex-1 flex justify-center lg:justify-end">
               <img 
-                src="/hero-image.png" 
-                alt="Insightful Stocks AI" 
+                src={heroImage} 
+                alt="Insightful Stocks AI dashboard showing SEC filing analysis and portfolio insights" 
                 className="max-w-full h-auto max-h-64 sm:max-h-80 md:max-h-96 lg:max-h-[500px] rounded-lg shadow-2xl"
               />
             </div>
@@ -182,6 +186,7 @@ export default function IndexPage({}: PageProps) {
           </div>
         </div>
       </section>
+      </main>
 
       {/* Footer */}
       <footer className="px-4 sm:px-6 lg:px-8 py-8 sm:py-12 border-t border-white/10">
@@ -198,11 +203,73 @@ export default function IndexPage({}: PageProps) {
   )
 }
 
-export const Head: HeadFC = () => (
-  <>
-    <title>Insightful Stocks AI - Join the Waitlist</title>
-    <meta name="description" content="The AI Agent That Reads SEC Filings So You Don't Have To. Get autonomous, verifiable insights into material changes affecting your portfolio." />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" href="/icon.png" />
-  </>
-)
+export const Head: HeadFC = () => {
+  const siteUrl = "https://insightfulstocks.ai"
+  const title = "Insightful Stocks AI - AI Agent for SEC Filings Analysis"
+  const description = "The AI Agent That Reads SEC Filings So You Don't Have To. Get autonomous, verifiable insights into material changes affecting your portfolio. Join the waitlist for early access."
+  const image = `${siteUrl}${heroImage}`
+  
+  // Structured Data (JSON-LD)
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Insightful Stocks AI",
+    "applicationCategory": "FinanceApplication",
+    "description": description,
+    "url": siteUrl,
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD",
+      "availability": "https://schema.org/PreOrder"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "5",
+      "ratingCount": "1"
+    }
+  }
+
+  return (
+    <>
+      <Helmet>
+        {/* Primary Meta Tags */}
+        <title>{title}</title>
+        <meta name="title" content={title} />
+        <meta name="description" content={description} />
+        <meta name="keywords" content="SEC filings, AI stock analysis, 10-K analysis, 10-Q analysis, stock portfolio insights, AI agent, financial analysis, SEC document analysis" />
+        <meta name="robots" content="index, follow" />
+        <meta name="language" content="English" />
+        <meta name="revisit-after" content="7 days" />
+        <link rel="canonical" href={siteUrl} />
+        
+        {/* Open Graph / Facebook */}
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={siteUrl} />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:image" content={image} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:site_name" content="Insightful Stocks AI" />
+        
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:url" content={siteUrl} />
+        <meta name="twitter:title" content={title} />
+        <meta name="twitter:description" content={description} />
+        <meta name="twitter:image" content={image} />
+        
+        {/* Additional Meta Tags */}
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="/icon.png" />
+        <link rel="apple-touch-icon" href="/icon.png" />
+        
+        {/* Structured Data */}
+        <script type="application/ld+json">
+          {JSON.stringify(structuredData)}
+        </script>
+      </Helmet>
+    </>
+  )
+}
